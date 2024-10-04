@@ -1,4 +1,4 @@
-Country,Gas proved reserves cubic meters,Population
+Country,Proven_gas_reserves_cubic_meters,Population
 Algeria,2279200000000,43851043
 Argentina,385567750000,45195777
 Australia,2389595400000,25499881
@@ -49,28 +49,3 @@ Uzbekistan,845325000000,33469199
 Venezuela,6260173300000,28435943
 Vietnam,645928650000,97338583
 Yemen,265831020000,29825968
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
-,,
