@@ -7,20 +7,70 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
   
   
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
   <!-- CSS file -->
   <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
   
 </head>
 <body>
-  
-<div id="scatter_plot"></div>
 
+  <div class="page">
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1>FIT3179 Week 10 Assessment</h1>
+        <p>Week 9 and Week 10 visualisation combined</p>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+
+    <div class="description description-left">
+      <h2>Oil Reserves Per Capita</h2>
+      <p>This visualisation provides a comprehensive overview of <strong>global oil reserves</strong> per capita, targeting industry professionals, 
+        government organisations, and researchers who need to understand the distribution, potential, 
+        and strategic importance of these resources. 
+      </p>
+      <div id="oil_choropleth" class = 'vis-container'></div>
+    </div>
+
+
+    <div class="description description-left">
+      <h2>Proven Gas Reserves Per Capita</h2>
+      <p>
+        This visualisation provides a comprehensive overview of <strong>proven natural gas reserves</strong> per capita.
+      </p>
+      <div id="gas_choropleth" class = 'vis-container'></div>
+    </div>
+
+
+  </div>    <!-- end page -->
+
+
+<!-- Javascript & calling the vegalite files -->
 <script type="text/javascript">
 
-  var spec2 = "js/scatter_plot_interactive.vg.json";
-  vegaEmbed('#scatter_plot', spec2).then(function(result) {
+  var specVis1 = "json/gas_choropleth.vg.json";
+  var specVis2 = "json/oil_choropleth.vg.json";
+
+  vegaEmbed('#gas_choropleth', specVis1, {"actions": false}).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
+
+  vegaEmbed('#oil_choropleth', specVis2, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
 </script>
 
 </body>
