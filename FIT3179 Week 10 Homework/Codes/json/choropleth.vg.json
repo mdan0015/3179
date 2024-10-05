@@ -73,31 +73,70 @@
       }
     },
     {
-      "mark": {
-        "type": "text",
-        "align": "right",
-        "baseline": "middle",
-        "dx": -12,
-        "fontSize": 11.5,
-        "fontStyle": "italic"
-      },
-      "encoding": {
-        "text": {
-          "condition": {
-            "test": "datum['properties.NAME'] == 'Russia'", 
-            "value": "Russia"
+      "transform": [
+        {
+          "lookup": "properties.NAME",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/mdan0015/3179/refs/heads/main/FIT3179%20Week%2010%20Homework/Codes/data/natural-gas-proved-reserves.csv"
+            },
+            "key": "Country",
+            "fields": ["Country", "Proven_gas_reserves_cubic_meters", "Population", "Latitude", "Longitude"]
+          }
+        },
+        {
+          "calculate": "datum.Proven_gas_reserves_cubic_meters / datum.Population",
+          "as": "Proven Gas Reserve Per Capita (cubic meters)"
+        },
+        {
+          "filter": "datum.Country == 'Malaysia'"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "dx": -8,
+            "dy": -8,
+            "baseline": "middle",
+            "fontStyle": "italic",
+            "fontSize": 12,
+            "color": "red"
           },
-          "value": ""
+          "encoding": {
+            "longitude": {"field": "Longitude"},
+            "latitude": {"field": "Latitude"},
+            "text": {"value": "Malaysia Gas Reserve Per Capita (cubic meters):"}
+          }
         },
-        "longitude": {
-          "field": "datum.Longitude",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "datum.Latitude",
-          "type": "quantitative"
-        },
-        "color": {"value": "black"}
+        {
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "dx": -8,
+            "dy": 8,
+            "baseline": "middle",
+            "fontStyle": "italic",
+            "fontSize": 12,
+            "color": "red"
+          },
+          "encoding": {
+            "longitude": {"field": "Longitude"},
+            "latitude": {"field": "Latitude"},
+            "text": {
+              "field": "Proven Gas Reserve Per Capita (cubic meters)",
+              "type": "quantitative",
+              "format": ".2s"
+            }
+          }
+        }
+      ],
+      "encoding": {
+        "tooltip": [
+          {"field": "Country", "type": "nominal", "title": "Country"},
+          {"field": "Proven Gas Reserve Per Capita (cubic meters)", "type": "quantitative", "title": "Gas Reserve Per Capita (cubic meters)", "format": ",.0f"}
+        ]
       }
     }
   ]
