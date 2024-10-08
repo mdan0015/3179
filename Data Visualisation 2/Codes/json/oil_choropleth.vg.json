@@ -1,0 +1,61 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Oil Reserve (tonnes) Per Capita",
+  "width": 800,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/mdan0015/3179/refs/heads/main/FIT3179%20Week%209%20Homework/json/ne_110m_admin_0_countries.topojson",
+    "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+  },
+  "projection": {"type": "equalEarth"},
+  "layer": [
+    {
+      "transform": [
+        {
+          "calculate": "'Data is not available in ' + datum.properties.NAME",
+          "as": "note"
+        }
+      ],
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
+      "encoding": {"tooltip": {"field": "note"}}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/mdan0015/3179/refs/heads/main/FIT3179%20Week%209%20Homework/json/oceans.topojson",
+        "format": {"type": "topojson", "feature": "oceans"}
+      },
+      "mark": {"type": "geoshape", "fill": "skyblue"}
+    },
+    {
+      "transform": [
+        {
+          "lookup": "properties.NAME",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/mdan0015/3179/refs/heads/main/FIT3179%20Week%209%20Homework/data/oil-proved-reserves.csv"
+            },
+            "key": "Country",
+            "fields": ["Begin", "End", "Absolute_Change", "Population"]
+          }
+        },
+        {"calculate": "datum.End / datum.Population", "as": "Oil Reserve (tonnes) Per Capita"}
+      ],
+      "mark": {"type": "geoshape"},
+      "encoding": {
+        "color": {
+          "field": "Oil Reserve (tonnes) Per Capita",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [0, 10, 100, 200, 400, 600, 1000, 1400],
+            "range": ["#fff5eb", "#fee6ce", "#fdd0a2", "#fdae6b", "#fd8d3c", "#f16913", "#d94801", "#8c2d04"]
+          }
+        },
+        "tooltip": [
+          {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+          {"field": "Oil Reserve (tonnes) Per Capita", "type": "quantitative", "format": ".2f"}
+        ]
+      }
+    }
+  ]
+}
