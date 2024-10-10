@@ -1,0 +1,26 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 570,
+    "height": 500,
+    "title": "US Crude Oil Purchase Price (Dollars per Barrel)",
+    "data": {
+        "url": "https://raw.githubusercontent.com/mdan0015/3179/refs/heads/main/Data%20Visualisation%202/Codes/data/U.S._Crude_Oil_First_Purchase_Price.csv"
+    },
+    "mark": "area",
+    "encoding": {
+        "x": {
+            "field": "Month",
+            "type": "temporal",
+            "title": "Month"
+        },
+        "y": {
+            "field": "US_Crude_Oil_Purchase_Price_Dollars_per_Barrel",
+            "type": "quantitative",
+            "title": "Price (Dollars per Barrel)"
+        },
+        "tooltip": [
+            {"field": "Month", "type": "temporal"},
+            {"field": "US_Crude_Oil_Purchase_Price_Dollars_per_Barrel", "type": "quantitative"}
+        ]
+    }
+}
