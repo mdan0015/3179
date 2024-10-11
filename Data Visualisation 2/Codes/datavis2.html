@@ -15,7 +15,7 @@
   <!-- Google font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Protest+Strike&display=swap" rel="stylesheet">
 
   <!-- CSS file -->
   <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
@@ -26,24 +26,22 @@
   <div class="page">
 
     <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-1">
-        <h1>THE OIL AND GAS INDUSTRY</h1>
-        <p>placholder</p>
-      </div>
-    </div>
+    <h1>THE <span class="oil_title">OIL</span> AND GAS INDUSTRY</h1>
     <!-- end pure grid group -->
 
     <!-- pure grid group -->
     <div class="pure-g">
       <div class="pure-u-1-2">
         <div class="description description-left">
-          <h2>Oil Price</h2>
-          <p>Placeholder.
-            Oil still plays an important role in the global economy despite the continued efforts to reduce its use and to find alternative green 
-            energy sources. In the early days, finding oil during a drill was considered somewhat of a nuisance as the intended 
+          <p>
+            <span class='oil_text_header'>Oil</span> plays an important role in the global economy despite the continued efforts to reduce its use and to find alternative green 
+            energy sources.<br> In the early days, finding oil during a drill was considered somewhat of a nuisance as the intended 
             treasures were normally water or salt. It wasn't until 1846 that the first commercial oil well was drilled 
-            in the Absheron Peninsula, Azerbaijan. </p>
+            in the Absheron Peninsula, Azerbaijan (Mir, 2021). 
+          </p>
+          <div class="image-container">
+            <img src="https://raw.githubusercontent.com/mdan0015/3179/refs/heads/main/Data%20Visualisation%202/Codes/img/articles-economics-08-determining-oil-prices.asp-ADD-V1-41aea7401ad343608c32155a39647b84.webp" alt="Oil Image">
+          </div>
         </div>
       </div>
       <div class="pure-u-1-2">
@@ -53,21 +51,20 @@
     <!-- end pure grid group -->
 
     <div class="description description-left">
-      <h2>Oil Reserves Per Capita</h2>
-      <p>This visualisation provides a comprehensive overview of <strong>global oil reserves</strong> per capita, targeting industry professionals, 
-        government organisations, and researchers who need to understand the distribution, potential, 
-        and strategic importance of these resources. 
+      <h2 style="color: #8B4513; font-size: 30px;">Oil Reserves Per Capita</h2>
+      <p>
+        The term <span class='oil_text'> oil reserves </span> refers to an estimate of the amount of crude oil located in a particular economic region 
+        with the potential of being extracted.
       </p>
-      <div id="oil_choropleth" class = 'vis-container'></div>
+      <div id="oil_choropleth" class = "vis-map-container"></div>
     </div>
-
 
     <div class="description description-left">
       <h2>Proven Gas Reserves Per Capita</h2>
       <p>
         This visualisation provides a comprehensive overview of <strong>proven natural gas reserves</strong> per capita.
       </p>
-      <div id="gas_choropleth" class = 'vis-container'></div>
+      <div id="gas_choropleth" class = 'vis-map-container'></div>
     </div>
 
 

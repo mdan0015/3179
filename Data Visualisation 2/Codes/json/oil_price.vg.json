@@ -1,26 +1,220 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 570,
-    "height": 500,
-    "title": "US Crude Oil Purchase Price (Dollars per Barrel)",
-    "data": {
-        "url": "https://raw.githubusercontent.com/mdan0015/3179/refs/heads/main/Data%20Visualisation%202/Codes/data/U.S._Crude_Oil_First_Purchase_Price.csv"
-    },
-    "mark": "area",
-    "encoding": {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 570,
+  "height": 500,
+  "title": "US Crude Oil Purchase Price (USD per Barrel)",
+  "data": {
+    "url": "https://raw.githubusercontent.com/mdan0015/3179/refs/heads/main/Data%20Visualisation%202/Codes/data/U.S._Crude_Oil_First_Purchase_Price.csv"
+  },
+  "layer": [
+    {
+      "mark": {"type": "area", "color": "#8B4513"},
+      "transform": [
+        {
+          "calculate": "datum['US_Crude_Oil_Purchase_Price_Dollars_per_Barrel']",
+          "as": "Price (USD)"
+        }
+      ],
+      "encoding": {
         "x": {
-            "field": "Month",
-            "type": "temporal",
-            "title": "Month"
+          "field": "Month",
+          "type": "temporal",
+          "title": null,
+          "axis": {"grid": false}
         },
         "y": {
-            "field": "US_Crude_Oil_Purchase_Price_Dollars_per_Barrel",
-            "type": "quantitative",
-            "title": "Price (Dollars per Barrel)"
+          "field": "US_Crude_Oil_Purchase_Price_Dollars_per_Barrel",
+          "type": "quantitative",
+          "title": "Price (USD per Barrel)",
+          "axis": {"grid": false}
         },
         "tooltip": [
-            {"field": "Month", "type": "temporal"},
-            {"field": "US_Crude_Oil_Purchase_Price_Dollars_per_Barrel", "type": "quantitative"}
+          {"field": "Month", "type": "temporal"},
+          {"field": "Price (USD)", "type": "quantitative"}
         ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rect",
+        "color": "#F0F8FF",
+        "xOffset": -170,
+        "yOffset": 46,
+        "width": 325,
+        "height": 70
+      },
+      "transform": [
+        {
+          "filter": "datum['US_Crude_Oil_Purchase_Price_Dollars_per_Barrel'] == 127.47"
+        }
+      ],
+      "encoding": {
+        "x": {"field": "Month", "type": "temporal"},
+        "y": {"field": "US_Crude_Oil_Purchase_Price_Dollars_per_Barrel", "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dy": 25,
+        "dx": -15,
+        "color": "#123445",
+        "fontWeight": "bold",
+        "fontSize": 12
+      },
+      "transform": [
+        {
+          "filter": "datum['US_Crude_Oil_Purchase_Price_Dollars_per_Barrel'] == 127.47"
+        },
+        {
+          "calculate": "split('The 2008 Global Financial Crisis and Great Recession \\ncaused a bear market in oil, sending the price of a \\nbarrel of crude oil from $127.47 to $35.09 in just a \\nless than a year.', '\\n')",
+          "as": "2008"
+        },
+        {
+          "calculate": "datum['US_Crude_Oil_Purchase_Price_Dollars_per_Barrel']",
+          "as": "Price (USD)"
+        }
+      ],
+      "encoding": {
+        "x": {"field": "Month", "type": "temporal"},
+        "y": {
+          "field": "US_Crude_Oil_Purchase_Price_Dollars_per_Barrel",
+          "type": "quantitative"
+        },
+        "text": {"field": "2008"},
+        "tooltip": [
+          {"field": "Month", "type": "temporal"},
+          {"field": "Price (USD)", "type": "quantitative"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rect",
+        "color": "#F0F8FF",
+        "xOffset": -135,
+        "yOffset": -195,
+        "width": 275,
+        "height": 50
+      },
+      "transform": [
+        {
+          "filter": "datum['US_Crude_Oil_Purchase_Price_Dollars_per_Barrel'] == 8.6"
+        }
+      ],
+      "encoding": {
+        "x": {"field": "Month", "type": "temporal"},
+        "y": {"field": "US_Crude_Oil_Purchase_Price_Dollars_per_Barrel", "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dy": -200,
+        "dx": 0,
+        "color": "#123445",
+        "fontWeight": "bold",
+        "fontSize": 12
+      },
+      "transform": [
+        {
+          "filter": "datum['US_Crude_Oil_Purchase_Price_Dollars_per_Barrel'] == 8.6"
+        },
+        {
+          "calculate": "split('The cost increase in the 2000s largely stemmed \\nfrom China\\'s rapidly growing demand for oil', '\\n')",
+          "as": "2008"
+        },
+        {
+          "calculate": "datum['US_Crude_Oil_Purchase_Price_Dollars_per_Barrel']",
+          "as": "Price (USD)"
+        }
+      ],
+      "encoding": {
+        "x": {"field": "Month", "type": "temporal"},
+        "y": {
+          "field": "US_Crude_Oil_Purchase_Price_Dollars_per_Barrel",
+          "type": "quantitative"
+        },
+        "text": {"field": "2008"},
+        "tooltip": [
+          {"field": "Month", "type": "temporal"},
+          {"field": "Price (USD)", "type": "quantitative"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#0a2f42",
+        "strokeWidth": 1
+      },
+      "transform": [
+        {
+          "filter": "datum['US_Crude_Oil_Purchase_Price_Dollars_per_Barrel'] == 8.6"
+        }
+      ],
+      "encoding": {
+        "x": {"field": "Month", "type": "temporal"},
+        "y": {"field": "US_Crude_Oil_Purchase_Price_Dollars_per_Barrel", "type": "quantitative"},
+        "y2": {"value": 300}
+      }
+    },
+    {
+      "mark": {
+        "type": "rect",
+        "color": "#F0F8FF",
+        "xOffset": -70,
+        "yOffset": 7,
+        "width": 130,
+        "height": 30
+      },
+      "transform": [
+        {
+          "filter": "datum['US_Crude_Oil_Purchase_Price_Dollars_per_Barrel'] == 15.18"
+        }
+      ],
+      "encoding": {
+        "x": {"field": "Month", "type": "temporal"},
+        "y": {"field": "US_Crude_Oil_Purchase_Price_Dollars_per_Barrel", "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dy": 0,
+        "dx": -10,
+        "color": "#123445",
+        "fontWeight": "bold",
+        "fontSize": 12
+      },
+      "transform": [
+        {
+          "filter": "datum['US_Crude_Oil_Purchase_Price_Dollars_per_Barrel'] == 15.18"
+        },
+        {
+          "calculate": "split('Covid-19 Pandemic \\nand lockdown crash', '\\n')",
+          "as": "2008"
+        },
+        {
+          "calculate": "datum['US_Crude_Oil_Purchase_Price_Dollars_per_Barrel']",
+          "as": "Price (USD)"
+        }
+      ],
+      "encoding": {
+        "x": {"field": "Month", "type": "temporal"},
+        "y": {
+          "field": "US_Crude_Oil_Purchase_Price_Dollars_per_Barrel",
+          "type": "quantitative"
+        },
+        "text": {"field": "2008"},
+        "tooltip": [
+          {"field": "Month", "type": "temporal"},
+          {"field": "Price (USD)", "type": "quantitative"}
+        ]
+      }
     }
+  ]
 }
