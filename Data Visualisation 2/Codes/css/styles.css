@@ -1,5 +1,9 @@
 body *{
-	font-family: 'Open Sans', sans-serif;
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 1.8;
+	font-size: 12;
 }
 
 .oil_title {
@@ -8,10 +12,10 @@ body *{
     color: #8B4513;
 }
 
-.oil_text_header {
+.gas_title {
+	font-family: 'Protest Strike';
     font-weight: bold;
-    color: #8B4513;
-	font-size: 1.5em;
+    color: #065d2c;
 }
 
 .oil_text {
@@ -29,6 +33,12 @@ h1 {
 	font-weight: 400;
 	font-style: normal;
   }
+
+.rozha-one-regular {
+	font-family: "Rozha One", serif;
+	font-weight: 400;
+	font-style: normal;
+}
   
  
 p {
@@ -97,7 +107,7 @@ h1 {
   
 .description-left {
 	padding-right: 20px;
-	margin-bottom: 40px;
+	margin-bottom: 0px;
 }
   
 

@@ -80,7 +80,7 @@
           "scale": {
             "type": "threshold",
             "domain": [0, 10, 100, 200, 400, 600, 1000, 1400],
-            "range": ["#fff5eb", "#fee6ce", "#fdd0a2", "#fdae6b", "#fd8d3c", "#f16913", "#d94801", "#8c2d04"]
+            "range": ["#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#fc8d59", "#d7301f", "#b30000", "#7f0000"]
           }
         },
         "tooltip": [
@@ -228,7 +228,7 @@
         {"calculate": "60", "as": "longitude"},
         {"calculate": "-40", "as": "latitude"}
       ],
-      "mark": {"type": "text", "dx": 0, "dy": 0, "color": "#8c2d04"},
+      "mark": {"type": "text", "dx": 0, "dy": 0, "color": "#b30000"},
       "encoding": {
         "longitude": {"field": "longitude"},
         "latitude": {"field": "latitude"},
@@ -252,7 +252,7 @@
         {"calculate": "-35", "as": "latitude2"},
         {"calculate": "datum.properties.NAME", "as": "annotationText"}
       ],
-      "mark": {"type": "rule", "stroke": "#8c2d04", "strokeWidth": 1},
+      "mark": {"type": "rule", "stroke": "#b30000", "strokeWidth": 1},
       "encoding": {
         "longitude": {"field": "longitude"},
         "latitude": {"field": "latitude"},
