@@ -1,7 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Proven Gas Reserves (cubic meters)",
-  "width": 800,
+  "width": 900,
   "height": 400,
   "data": {
     "url": "https://raw.githubusercontent.com/mdan0015/3179/refs/heads/main/FIT3179%20Week%2010%20Homework/Codes/json/ne_110m_admin_0_countries.topojson",
@@ -21,7 +20,7 @@
         "min": 0,
         "max": 100000,
         "step": 1000,
-        "name": "Mininum gas reserve per capita (cubic meters)"
+        "name": "Mininum gas reserve per capita (cubic meters):  "
       }
     },
     {
@@ -32,7 +31,7 @@
         "min": 150,
         "max": 700,
         "step": 10,
-        "name": "Zoom: "
+        "name": "Zoom:  "
       }
     },
     {
@@ -48,11 +47,18 @@
                 [105.318756, 61.524010]
             ],
             "labels": ["None", "Middle-east", "South-America", "Malaysia", "Easten-Europe"],
-            "name": "Map Centre: "
+            "name": "Map Center:  "
         }
     }
   ],
   "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/WorldMapWithGraticules.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+      },
+      "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
+    },
     {
       "transform": [
         {
@@ -82,18 +88,19 @@
             "fields": ["Country", "Proven_gas_reserves_cubic_meters", "Population", "Latitude", "Longitude"]
           }
         },
+        {"calculate": "datum.Proven_gas_reserves_cubic_meters / datum.Population", "as": "Proven Gas Reserve Per Capita"},
         {"calculate": "datum.Proven_gas_reserves_cubic_meters / datum.Population", "as": "Proven Gas Reserve Per Capita (cubic meters)"},
         {"filter": "datum.Proven_gas_reserves_cubic_meters / datum.Population > gas_reserve_per_capita_above"}
       ],
       "mark": {"type": "geoshape"},
       "encoding": {
         "color": {
-          "field": "Proven Gas Reserve Per Capita (cubic meters)",
+          "field": "Proven Gas Reserve Per Capita",
           "type": "quantitative",
           "scale": {
             "type": "threshold",
-            "domain": [0, 1000, 10000, 50000, 100000, 200000, 500000, 1000000],
-            "range": ["#fcfbfd", "#efedf5", "#dadaeb", "#bcbddc", "#9e9ac8", "#807dba", "#6a51a3", "#4a1486"]
+            "domain": [1000, 10000, 50000, 100000, 200000, 500000, 1000000],
+            "range": ["#f7fcfd", "#e0ecf4", "#bfd3e6", "##9ebcda", "#8c96c6", "#8c6bb1", "#88419d", "#6e016b"]
           },
           "legend": {"format": ","}
         },
@@ -125,10 +132,10 @@
           "calculate": "split('Russia has the highest \\ntotal oil reserves', '\\n')",
           "as": "annotationText"
         },
-        {"calculate": "180", "as": "longitude"},
-        {"calculate": "61.524010", "as": "latitude"}
+        {"calculate": "150", "as": "longitude"},
+        {"calculate": "30", "as": "latitude"}
       ],
-      "mark": {"type": "text", "dx": 0, "dy": 0, "color": "red"},
+      "mark": {"type": "text", "dx": 0, "dy": 0, "color": "red", "fontWeight": "bold"},
       "encoding": {
         "longitude": {"field": "longitude"},
         "latitude": {"field": "latitude"},
@@ -146,13 +153,127 @@
       },
       "transform": [
         {"filter": "datum.properties.NAME == 'Russia'"},
-        {"calculate": "40", "as": "longitude"},
-        {"calculate": "25", "as": "latitude"},
-        {"calculate": "60", "as": "longitude2"},
-        {"calculate": "-35", "as": "latitude2"},
+        {"calculate": "105.318756", "as": "longitude"},
+        {"calculate": "61.5", "as": "latitude"},
+        {"calculate": "150", "as": "longitude2"},
+        {"calculate": "35", "as": "latitude2"},
+        {"calculate": "datum.properties.NAME", "as": "annotationText"}
+      ],
+      "mark": {"type": "rule", "stroke": "red", "strokeWidth": 1, "fontWeight": "bold"},
+      "encoding": {
+        "longitude": {"field": "longitude"},
+        "latitude": {"field": "latitude"},
+        "longitude2": {"field": "longitude2"},
+        "latitude2": {"field": "latitude2"}
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/mdan0015/3179/refs/heads/main/FIT3179%20Week%209%20Homework/json/ne_110m_admin_0_countries.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.NAME",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/mdan0015/3179/refs/heads/main/FIT3179%20Week%2010%20Homework/Codes/data/natural-gas-proved-reserves.csv"
+            },
+            "key": "Country",
+            "fields": ["Proven_gas_reserves_cubic_meters"]
+          }
+        },
+        {"filter": "datum.properties.NAME == 'Iran'"},
+        {"calculate": "datum['Proven_gas_reserves_cubic_meters']", "as": "Total Reserves (tonnes)"},
+        {
+          "calculate": "split('Iran has the second \\nhighest total oil reserves', '\\n')",
+          "as": "annotationText"
+        },
+        {"calculate": "0", "as": "latitude"},
+        {"calculate": "70", "as": "longitude"}
+      ],
+      "mark": {"type": "text", "dx": 0, "dy": 0, "color": "red", "fontWeight": "bold"},
+      "encoding": {
+        "longitude": {"field": "longitude"},
+        "latitude": {"field": "latitude"},
+        "text": {"field": "annotationText"},
+      "tooltip": [
+        {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+        {"field": "Total Reserves (tonnes)", "type": "quantitative", "format": ",.2f"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/mdan0015/3179/refs/heads/main/FIT3179%20Week%209%20Homework/json/ne_110m_admin_0_countries.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
+      "transform": [
+        {"filter": "datum.properties.NAME == 'Russia'"},
+        {"calculate": "53.688046", "as": "longitude"},
+        {"calculate": "32.427910", "as": "latitude"},
+        {"calculate": "70", "as": "longitude2"},
+        {"calculate": "5", "as": "latitude2"},
         {"calculate": "datum.properties.NAME", "as": "annotationText"}
       ],
       "mark": {"type": "rule", "stroke": "red", "strokeWidth": 1},
+      "encoding": {
+        "longitude": {"field": "longitude"},
+        "latitude": {"field": "latitude"},
+        "longitude2": {"field": "longitude2"},
+        "latitude2": {"field": "latitude2"}
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/mdan0015/3179/refs/heads/main/FIT3179%20Week%209%20Homework/json/ne_110m_admin_0_countries.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.NAME",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/mdan0015/3179/refs/heads/main/FIT3179%20Week%2010%20Homework/Codes/data/natural-gas-proved-reserves.csv"
+            },
+            "key": "Country",
+            "fields": ["Proven_gas_reserves_cubic_meters", "Population"]
+          }
+        },
+        {"filter": "datum.properties.NAME == 'Qatar'"},
+        {"calculate": "datum.Proven_gas_reserves_cubic_meters / datum.Population", "as": "Gas Reserve Per Capita (cubic meters)"},
+        {
+          "calculate": "split('Qatar has the highest \\noil reserve per capita by far', '\\n')",
+          "as": "annotationText"
+        },
+        {"calculate": "0", "as": "latitude"},
+        {"calculate": "35", "as": "longitude"}
+      ],
+      "mark": {"type": "text", "dx": 0, "dy": 0, "color": "#065d2c", "align": "right", "fontWeight": "bold"},
+      "encoding": {
+        "longitude": {"field": "longitude"},
+        "latitude": {"field": "latitude"},
+        "text": {"field": "annotationText"},
+      "tooltip": [
+        {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+        {"field": "Gas Reserve Per Capita (cubic meters)", "type": "quantitative", "format": ",.2f"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/mdan0015/3179/refs/heads/main/FIT3179%20Week%209%20Homework/json/ne_110m_admin_0_countries.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
+      "transform": [
+        {"filter": "datum.properties.NAME == 'Qatar'"},
+        {"calculate": "51.183884", "as": "longitude"},
+        {"calculate": "25.354826", "as": "latitude"},
+        {"calculate": "35", "as": "longitude2"},
+        {"calculate": "3", "as": "latitude2"},
+        {"calculate": "datum.properties.NAME", "as": "annotationText"}
+      ],
+      "mark": {"type": "rule", "stroke": "#065d2c", "strokeWidth": 1},
       "encoding": {
         "longitude": {"field": "longitude"},
         "latitude": {"field": "latitude"},

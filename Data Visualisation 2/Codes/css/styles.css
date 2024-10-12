@@ -81,6 +81,15 @@ h1 {
 	margin-bottom: 50px;
   }
   
+.hr3 {
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, transparent, #DDD, transparent);
+    padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 20px;
+}
+
 .description-right {
 	padding-left: 20px;
 	margin-bottom: 40px;
@@ -91,11 +100,7 @@ h1 {
 	margin-bottom: 40px;
 }
   
-.pure-g {
-	display: flex;
-	align-items: flex-start;
-	margin-bottom: 10px;
-  }
+
   
 .small-font {
 	font-size: 14px;
