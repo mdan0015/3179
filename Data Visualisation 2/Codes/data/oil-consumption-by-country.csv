@@ -1,4 +1,4 @@
-Country,Code,Year,GDP per capita, Oil consumption_TWh ,Population
+Country,Code,Year,GDP_per_capita, Oil_consumption_TWh ,Population
 China,CHN,1965,98.49,129.06,723846349
 China,CHN,1966,104.32,165.8,742948541
 China,CHN,1967,96.59,163.69,761006260
