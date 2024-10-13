@@ -30,12 +30,12 @@
             "input": "select",
             "options": [
                 [0, 0],
+                [101.975769, -4.210484],
                 [51.183884, 25.354826],
                 [-66.589729, 6.423750],
-                [101.975769, -4.210484],
                 [105.318756, 61.524010]
             ],
-            "labels": ["None", "Middle-east", "South-America", "Malaysia", "Easten-Europe"],
+            "labels": ["None",  "Malaysia", "Middle-east", "South-America", "Easten-Europe"],
             "name": "Map Center:  "
         }
     }

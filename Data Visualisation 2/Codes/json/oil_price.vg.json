@@ -163,6 +163,22 @@
     },
     {
       "mark": {
+        "type": "rule",
+        "color": "white",
+        "strokeWidth": 2
+      },
+      "transform": [
+        {
+          "filter": "datum['US_Crude_Oil_Purchase_Price_Dollars_per_Barrel'] == 15.18"
+        }
+      ],
+      "encoding": {
+        "x": {"field": "Month", "type": "temporal"},
+        "y": {"field": "US_Crude_Oil_Purchase_Price_Dollars_per_Barrel", "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {
         "type": "rect",
         "color": "#F0F8FF",
         "xOffset": -70,

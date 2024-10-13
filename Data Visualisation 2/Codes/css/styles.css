@@ -18,6 +18,11 @@ body *{
     color: #065d2c;
 }
 
+.natural_gas_text {
+    font-weight: bold;
+    color: #065d2c;
+}
+
 .oil_text {
     font-weight: bold;
     color: #8B4513;
